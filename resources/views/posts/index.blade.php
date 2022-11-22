@@ -1,9 +1,9 @@
 @extends('master')
 @section('content')
     <section>
-        <div class="container mb-5 py-5 bg-light">
+        <div class="container-lg mb-5 py-5 bg-light">
             <div class="row justify-content-center">
-                <div class="col-lg-5 my-4">
+                <div class="col-md-5 my-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
@@ -28,17 +28,20 @@
                             <div class="card-body">
                                 <p class="mb-1"><a href="{{ url(sprintf('users/%d', $post->user->id)) }}"
                                         class="text-decoration-none fw-bold"> {{ $post->user->name }} </a></p>
-                                <small class="text-muted">{{ $post->created_at->diffForHumans() }} </small>
-                                <h5 class="card-title my-2">{{ $post->title }}</h5>
-                                <p class="card-text"> {{ Str::limit($post->description, 100, '...') }}
-                                    <span>
-                                        @if (strlen($post->description) > 100)
-                                            <a href="{{ url(sprintf('posts/%d', $post->id)) }}"
-                                                class="text-decoration-none"> See
-                                                More</a>
-                                        @endif
-                                    </span>
-                                </p>
+                                <small class="text-muted"><i class="bi bi-clock"></i>
+                                    {{ $post->created_at->diffForHumans() }} </small>
+                                <div class="my-2">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <p class="card-text"> {{ Str::limit($post->description, 100, '...') }}
+                                        <span>
+                                            @if (strlen($post->description) > 100)
+                                                <a href="{{ url(sprintf('posts/%d', $post->id)) }}"
+                                                    class="text-decoration-none"> See
+                                                    More</a>
+                                            @endif
+                                        </span>
+                                    </p>
+                                </div>
 
                                 {{-- <img src="{{}}" class="img-fluid mb-3"
                                     style="width: 100%; height: 100%;"> --}}

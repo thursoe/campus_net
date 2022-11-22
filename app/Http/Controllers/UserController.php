@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Date;
 
 class UserController extends Controller
 {
@@ -40,6 +40,7 @@ class UserController extends Controller
         $credentials = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'updated_at' => Date::now()
         ];
 
         if ($request->hasFile('image')) {
