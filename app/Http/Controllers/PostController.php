@@ -23,12 +23,26 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->validate([
-            'title'=> 'required',
-            'description' => 'required'
+        $file = $request->file('image');
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'mimes:jpg,png,jpeg'
         ]);
 
+        $credentials = [
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ];
+
         $credentials['user_id'] = Auth::user()->id;
+
+        if ($request->hasFile('image')) {
+            $filename = uniqid() . '.' . $file->extension();
+            $file->storeAs('public/posts/images', $filename);
+            $credentials['image'] = $filename;
+        }
 
         Post::create($credentials);
 

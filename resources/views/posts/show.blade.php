@@ -10,7 +10,7 @@
                                     class="text-decoration-none fw-bold"> {{ $post->user->name }} </a></p>
                             <small class="text-muted"><i class="bi bi-clock"></i> {{ $post->created_at->diffForHumans() }}
                             </small>
-                            <div class="my-2">
+                            <div class="my-3">
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="card-text"> {{ $post->description }} </p>
                             </div>

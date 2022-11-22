@@ -23,7 +23,7 @@
                             <span>{{ $user->role }}</span>
                             <p class="text-muted">Joined {{ substr($user->created_at, 0, 10) }}</p>
 
-                            @if (Auth::user())
+                            @if (Auth::user()->id == $user->id)
                                 <a href="{{ url('users/edit') }}" class="btn btn-outline-primary"> Edit profile</a>
                             @endif
                         </div>
@@ -41,8 +41,10 @@
                                         class="text-decoration-none fw-bold"> {{ $user->name }} </a></p>
                                 <small class="text-muted"><i class="bi bi-clock"></i> {{ $post->created_at->diffForHumans() }}
                                 </small>
-                                <h5 class="card-title my-2">{{ $post->title }}</h5>
-                                <p class="card-text"> {{ $post->description }}</p>
+                                <div class="my-3">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <p class="card-text"> {{ $post->description }} </p>
+                                </div>
 
                                 {{-- <img src="{{}}" class="img-fluid mb-3"
                         style="width: 100%; height: 100%;"> --}}
