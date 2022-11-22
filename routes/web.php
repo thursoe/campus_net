@@ -18,8 +18,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return redirect('login');
+});
 
 Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
@@ -30,6 +30,7 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{id}', [PostController::class, 'show']);
+Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 
 Route::get('users', [UserController::class, 'index']);
 Route::get('users/{id}', [UserController::class, 'show']);

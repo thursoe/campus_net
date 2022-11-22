@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('title');
             $table->longText('description');
             $table->integer('user_id');
-            $table->integer('rating');
+            $table->integer('rating')->default(0);
             $table->timestamps();
         });
     }

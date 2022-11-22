@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -18,5 +19,19 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         return view('posts.show', ['post' => $post]);
+    }
+
+    public function store(Request $request)
+    {
+        $credentials = $request->validate([
+            'title'=> 'required',
+            'description' => 'required'
+        ]);
+
+        $credentials['user_id'] = Auth::user()->id;
+
+        Post::create($credentials);
+
+        return back();
     }
 }

@@ -16,13 +16,15 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required',
+            'name'=> 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:8',
+            'password_confirm' => 'required|same:password',
+            'department_id' => 'required'
         ]);
 
         User::create($credentials);
 
-        return view('login');
+        return back();
     }
 }
