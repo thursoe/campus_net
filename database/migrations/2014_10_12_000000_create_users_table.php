@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role')->default('student');
             $table->integer('department_id');
+            $table->text('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -29,7 +29,7 @@
                 <ul class="navbar-nav ms-auto">
                     @if (Auth::user())
                         <li class="nav-item mx-1">
-                            <a href="{{ printf('users/%d', Auth::user()->id) }}"
+                            <a href="{{ url(sprintf('users/%d', Auth::user()->id)) }}"
                                 class="nav-link"><small>Profile</small></a>
                         </li>
                         <li class="nav-item mx-1">

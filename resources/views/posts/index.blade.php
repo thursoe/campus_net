@@ -6,20 +6,39 @@
                 <div class="col-lg-5 my-4">
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
-                                data-bs-target="#creatpostModal">Post a project</button>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="rounded-circle" style="height: 2.5em; width: 2.5em;">
+                                    <a href="{{ url('users/' . Auth::user()->id) }}">
+                                        @if (Auth::user()->image)
+                                            <img src="{{ asset('storage/users/images/' . Auth::user()->image) }}"
+                                                class="img-fluid w-100 h-100 rounded-circle">
+                                        @else
+                                            <img src="{{ asset('storage/users/images/avatar.png') }}"
+                                                class="img-fluid w-100 h-100 rounded-circle">
+                                        @endif
+                                    </a>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#creatpostModal">Post a project</button>
+                            </div>
                         </div>
                     </div>
                     @foreach ($posts as $post)
                         <div class="card shadow-sm my-3">
                             <div class="card-body">
-                                <p class="mb-1"><a href="{{ url(sprintf('users/%d', $post->user->id)) }})"
+                                <p class="mb-1"><a href="{{ url(sprintf('users/%d', $post->user->id)) }}"
                                         class="text-decoration-none fw-bold"> {{ $post->user->name }} </a></p>
                                 <small class="text-muted">{{ $post->created_at->diffForHumans() }} </small>
                                 <h5 class="card-title my-2">{{ $post->title }}</h5>
-                                <p class="card-text"> {{ Str::limit($post->description, 100, '...') }} <a
-                                        href="{{ url(sprintf('posts/%d', $post->id)) }})" class="text-decoration-none"> See
-                                        More</a></p>
+                                <p class="card-text"> {{ Str::limit($post->description, 100, '...') }}
+                                    <span>
+                                        @if (strlen($post->description) > 100)
+                                            <a href="{{ url(sprintf('posts/%d', $post->id)) }}"
+                                                class="text-decoration-none"> See
+                                                More</a>
+                                        @endif
+                                    </span>
+                                </p>
 
                                 {{-- <img src="{{}}" class="img-fluid mb-3"
                                     style="width: 100%; height: 100%;"> --}}

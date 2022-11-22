@@ -9,7 +9,7 @@
                 eligendi architecto quisquam esse molestiae totam quia a temporibus laborum cum praesentium provident et
                 consequatur distinctio sed eius possimus!</p>
         </div>
-        -* <div class="col-md-4 fw-light">
+        <div class="col-md-4 fw-light">
             <form action="{{ route('register') }}" method="POST">
                 @csrf
                 <div class="form-floating mb-3">

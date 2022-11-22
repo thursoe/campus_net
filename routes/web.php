@@ -33,4 +33,6 @@ Route::get('posts/{id}', [PostController::class, 'show']);
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 
 Route::get('users', [UserController::class, 'index']);
+Route::get('users/edit', [UserController::class, 'showEditForm']);
+Route::post('users/update', [UserController::class, 'update'])->name('users.update');
 Route::get('users/{id}', [UserController::class, 'show']);
