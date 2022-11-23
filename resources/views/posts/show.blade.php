@@ -15,14 +15,21 @@
                                 <p class="card-text"> {{ $post->description }} </p>
                             </div>
 
-                            {{-- <img src="{{ asset('template/assets/images/cover-img.jpg') }}" class="img-fluid mb-3"
-                                style="width: 100%; height: 100%;"> --}}
+                            <img src="{{ asset('storage/posts/images/' . $post->image) }}" class="img-fluid mb-3"
+                                style="width: 100%; height: 100%;">
 
                             <hr>
                             <p class="text-muted"><i class="bi bi-chat-text"></i> Comments</p>
                             <div class="px-3">
+                                <form action="{{ route('comments.store', $post->id) }}" method="POST">
+                                    @csrf
+                                    <div class="d-flex align-items-center gap-1">
+                                        <input type="text" name="message" class="form-control form-control-sm"
+                                            placeholder="Write a comment...">
+                                    </div>
+                                </form>
                                 @unless($post->comments->isEmpty())
-                                    @foreach ($post->comments as $comment)
+                                    @foreach ($post->comments->sortByDesc('updated_at') as $comment)
                                         <span><a href="{{ url(sprintf('/users/%d', $comment->user->id)) }}"
                                                 class="text-decoration-none">{{ $comment->user->name }} </a><small
                                                 class="text-muted">{{ $comment->created_at->diffForHumans() }}</small></span>

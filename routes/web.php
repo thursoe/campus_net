@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('users', [UserController::class, 'index']);
 Route::get('users/edit', [UserController::class, 'showEditForm']);
 Route::post('users/update', [UserController::class, 'update'])->name('users.update');
 Route::get('users/{id}', [UserController::class, 'show']);
+
+Route::post('posts/{id}', [CommentController::class, 'store'])->name('comments.store');
