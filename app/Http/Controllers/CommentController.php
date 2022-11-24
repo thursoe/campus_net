@@ -22,7 +22,7 @@ class CommentController extends Controller
         ];
 
         Comment::create($credentials);
-        
-        return back();
+
+        return redirect('posts/'.$id);
     }
 }

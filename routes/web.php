@@ -32,10 +32,11 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{id}', [PostController::class, 'show']);
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('posts/{id}/delete', [PostController::class, 'delete'])->name('posts.delete');
 
 Route::get('users', [UserController::class, 'index']);
 Route::get('users/edit', [UserController::class, 'showEditForm']);
 Route::post('users/update', [UserController::class, 'update'])->name('users.update');
 Route::get('users/{id}', [UserController::class, 'show']);
 
-Route::post('posts/{id}', [CommentController::class, 'store'])->name('comments.store');
+Route::post('posts/{id}/create/comments', [CommentController::class, 'store'])->name('comments.store');

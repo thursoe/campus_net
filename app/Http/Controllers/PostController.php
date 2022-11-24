@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -47,5 +48,12 @@ class PostController extends Controller
         Post::create($credentials);
 
         return back();
+    }
+
+    public function delete($id)
+    {
+        DB::table('posts')->where('id',$id)->delete();
+
+        return redirect()->route('posts.index');
     }
 }
